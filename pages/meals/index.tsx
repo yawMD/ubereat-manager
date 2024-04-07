@@ -2,7 +2,9 @@ import MealComponent from "@/components/meal-form";
 
 const Meals = () => {
     return (
-            <MealComponent />
+        <>
+          <MealComponent />
+        </>
     )
 }
 

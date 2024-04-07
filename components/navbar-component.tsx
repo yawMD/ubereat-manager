@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export const NavBar = () => {
   return (
@@ -23,7 +24,7 @@ export const NavBar = () => {
       <div className="flex items-center">
         <div className="px-2">EN</div>
         <div className="px-2">Get Support</div>
-        <div className="px-2">Login</div>
+        <Link href={"/login"} className="px-2">Login</Link>
         <div className="p-2 rounded-3xl bg-white text-black mx-2">Get started</div>
       </div>
     </div>

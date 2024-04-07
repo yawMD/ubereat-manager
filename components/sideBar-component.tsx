@@ -1,6 +1,6 @@
 /*
   This example requires some changes to your config:
-  
+
   ```
   // tailwind.config.js
   module.exports = {
@@ -12,7 +12,7 @@
   }
   ```
 */
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -52,12 +52,26 @@ interface Props {
     children: React.ReactNode;
   }
 
+  interface User {
+    username: string;
+    email: string;
+    avatar: string;
+  }
+
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function SideBar(props:Props) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [admin, setAdmin] = useState<User | null>(null)
+
+  useEffect(() => {
+    const userData = localStorage.getItem("admin");
+    if (userData) {
+      setAdmin(JSON.parse(userData));
+    }
+  }, []);
 
   return (
     <>
@@ -287,7 +301,7 @@ export default function SideBar(props:Props) {
                         className="ml-4 text-sm font-semibold leading-6 text-gray-900"
                         aria-hidden="true"
                       >
-                        Tom Cook
+                        {admin?.username}
                       </span>
                       <ChevronDownIcon
                         className="ml-2 h-5 w-5 text-gray-400"
